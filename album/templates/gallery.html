@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}
+Gallery
+{% endblock title %}
+
+{% block content %}
+<div class="container m-3">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card" style="width: 18rem;">
+                <div class="card-header">
+                    Category
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><a class="text-decoration-none text-dark" href="{% url "gallery" %}">All</a></li>
+
+                    {% for category in categories %}
+                    <li class="list-group-item"><a class="text-decoration-none text-dark" href="{% url "gallery" %}?category={{ category.name }}">{{ category.name }}</a></li>
+                    {% endfor %}
+                    
+                    <a href="{% url "add" %}" class="btn btn-dark btn-block m-2">Add</a>
+                </ul>
+              </div>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+              {% for photo in photos %}
+                <div class="col-md-4 mb-3">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ photo.image.url }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <small class="card-text">Category: {{ photo.category.name }}</small>
+                        </div>
+                        <a href="{% url "photo" photo.pk %}" class="btn btn-outline-dark m-1">View</a>
+                      </div>
+                </div>
+              {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>  
+{% endblock content %}
