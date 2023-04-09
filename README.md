@@ -20,6 +20,12 @@
 # Install the required dependency
 - pip install -r requirements.txt
 
+# Make migrations
+- python manage.py migrate
+
+# Create superuser
+- python manage.py createsuperuser
+
 # Run the server
 - python manage.py runserver
 ```
